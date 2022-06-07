@@ -1,0 +1,13 @@
+library(dplyr)
+library(stringr)
+data <- read.csv("ocean_qa.csv",encoding = "gb18030")
+data$ocean <- substr(data$all,1,2)
+data$pro <- substr(data$all,3,4)
+data <- data %>% 
+  mutate(ll = str_extract(all,"[[:digit:]]+.[[:digit:]]+.[[:digit:]]{2}")) %>% 
+  mutate(lon = substr(ll,6,11)) %>% 
+  mutate(lat = substr(ll,12,17)) %>% 
+  mutate()
+  mutate(code = str_extract(all,"[:upper:]{1,}[0-9]{5}")) 
+data <- data %>% 
+  filter(pro == "近海")
